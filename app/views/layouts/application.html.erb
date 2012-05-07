@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<title></title>
+	<title><%= full_title(yield(:title)) %></title>
 	<%= stylesheet_link_tag "application", media: "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
-	<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+	
 	</head>
 		<bod>
 		<header class="navbar navbar-fixed-top">
@@ -16,8 +15,8 @@
 
 		<nav>
 			<ul class="nav pull-right">
-				<li><%= link_to "Home", '#' %></li>
-				<li><%= link_to "Help", '#' %></li>
+				<li><%= link_to "Home", home_path %></li>
+				<li><%= link_to "Help", help_path%></li>
 				<li><%= link_to "Sign in", '#' %></li>
 			</ul> 
 		</nav>
