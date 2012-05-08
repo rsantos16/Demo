@@ -1,18 +1,28 @@
 require 'spec_helper'
 
 describe "StaticPages" do
+
+	subject { page }
   
 	describe "Home pages" do
+    	
+		before {visit home_path}
+
 		it "should have the content Sample App" do
-		 visit '/static_pages/home'
-		 page.should have_content('Sample App')
+		 page.should have_content('Sample App') 
+		 page.should have_selector('title', text: "| Home")
+
 		end
 	end
 
- 	describe "Hello Page" do
- 		it "should have the content  - Hello World" do
- 		 visit '/static_pages/hello'
- 		 page.should have_selector('p', text: 'Hello World')	
+
+ 	describe "Contact Pages" do
+ 		subject {page}
+ 		before {visit contact_path}
+ 		it "Should have the content - Contact" do
+ 			
+ 		page.should have_selector('h1', text: "Contact Info")
+
  		end
  	end
 
