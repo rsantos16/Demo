@@ -8,22 +8,17 @@ describe "StaticPages" do
     	
 		before {visit home_path}
 
-		it "should have the content Sample App" do
-		 page.should have_content('Sample App') 
-		 page.should have_selector('title', text: "| Home")
-
-		end
+		it {should have_content('Sample App') }
+		it {should have_selector('title', text: "| Home")}
+	
 	end
 
-
  	describe "Contact Pages" do
- 		subject {page}
- 		before {visit contact_path}
- 		it "Should have the content - Contact" do
- 			
- 		page.should have_selector('h1', text: "Contact Info")
+ 		
+		before {visit contact_path}
 
- 		end
+		it {should have_selector('h1', text: 'Contact Info')}
+
  	end
 
 end
