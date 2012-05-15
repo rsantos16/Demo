@@ -1,5 +1,14 @@
 
 @import "bootstrap";
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+
 /* universal */
 html {
   overflow-y: scroll;
@@ -86,5 +95,24 @@ footer {
 footer small {
   float: left;
 }
+
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+.debug_dump{
+  @include box_sizing
+}
+
+
+
+
 
 
