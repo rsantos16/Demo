@@ -12,6 +12,7 @@ describe User do
   it {should respond_to (:password)}
   it {should respond_to (:password_confirmation)}
   it {should respond_to (:authenticate)}
+  it {should respond_to (:remembered_token)}
   it {should be_valid}
 
   describe "When name is not present" do
@@ -88,7 +89,10 @@ describe User do
     it {should == found_user.authenticate(@user.password)}
    end
  
-  
+  describe "with remembered_token" do
+    its(:remembered_token) {should_not be_blank}
+  end
+
    describe "with invalid password" do
     let (:user_for_invalid_password) {found_user.authenticate('invalid')}
 
@@ -96,5 +100,7 @@ describe User do
     specify {user_for_invalid_password.should be_false}  
   end
  end 
+
+
 
 end
