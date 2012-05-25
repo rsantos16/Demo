@@ -34,4 +34,9 @@ describe "Authentication" do
   	it {should_not have_selector('div.alert.alert-error')}
   end
 
+  describe "visiting the user index" do
+    before { visit users_path}
+    it {should have_selector('title', text: 'Sign in')}
+  end
+
 end
