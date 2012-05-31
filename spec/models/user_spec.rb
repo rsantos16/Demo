@@ -13,6 +13,7 @@ describe User do
   it {should respond_to (:password_confirmation)}
   it {should respond_to (:authenticate)}
   it {should respond_to (:remembered_token)}
+  it {should respond_to (:microposts)}
   it {should be_valid}
 
   describe "When name is not present" do
@@ -101,6 +102,55 @@ describe User do
   end
  end 
 
+describe "micropost associations" do
+    before { @user.save }
+    let!(:older_micropost) do
+      FactoryGirl.create(:micropost, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_micropost) do
+      FactoryGirl.create(:micropost, user: @user, created_at: 1.hour.ago)
+     end
+      it "should have the right microposts in the right order" do
+      @user.microposts.should == [newer_micropost, older_micropost]
+    end
 
+    it "should destroy associated microposts" do
+     microposts = @user.microposts
+      @user.destroy
+      microposts.each do |micropost|
+        Micropost.find_by_id(micropost.id).should be_nil
+      end
+    end 
+  end
 
+ describe "profil page" do
+  let (:user) {FactoryGirl.create(:user)}
+  let!(:m1) {FactoryGirl.create(:micropost, user, content: "Foo")}
+  let!(:m2) {FactoryGirl.create(:micropost, user, content: "bar")}
+
+  before {visit user_path(user)}
+
+    it { should have_selector('h1',    text: user.name) }
+    it { should have_selector('title', text: user.name) }
+
+    describe "microposts" do
+      it { should have_content(m1.content) }
+      it { should have_content(m2.content) }
+      it { should have_content(user.microposts.count) }
+     end
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
