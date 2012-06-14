@@ -1,1 +1,2 @@
-<p>This is a Twitter Clone.</p>
+This is a Twitter Clone.
+I am using this as an exercise to practice Ruby on Rails
